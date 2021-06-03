@@ -27,6 +27,7 @@ WantedBy=default.target
 
 Enable on boot and start it
 ```
+systemctl daemon-reload
 systemctl start es_exporter.service
 systemctl enable es_exporter.serivce
 ```
