@@ -29,7 +29,7 @@ Enable on boot and start it
 ```
 systemctl daemon-reload
 systemctl start es_exporter.service
-systemctl enable es_exporter.serivce
+systemctl enable es_exporter.service
 ```
 
 3. Prometheus config: `vim /etc/prometheus/prometheus.yml`
