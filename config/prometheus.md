@@ -36,3 +36,27 @@ scrape_configs:
     static_configs:
         - targets: ['localhost:9100','prometheus-target-1:9100','prometheus-target-2:9100']
 ```
+
+# Service file: /etc/systemd/system/prometheus.service
+## Read: https://stackoverflow.com/questions/47414593/configure-prometheus-to-use-non-default-port
+```
+[Unit]
+Description=Prometheus
+After=network.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+    --config.file /etc/prometheus/prometheus.yml \
+    --storage.tsdb.path /var/lib/prometheus/ \
+    --web.console.templates=/etc/prometheus/consoles \
+    --web.console.libraries=/etc/prometheus/console_libraries \
+    --web.listen-address=:9001
+
+[Install]
+WantedBy=multi-user.target
+```
+Note: --web.listen-address=:9001 is custom port for prometheus. Default port for it is 9090
+
